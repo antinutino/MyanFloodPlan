@@ -250,27 +250,7 @@ export class Service {
      
 
         
-    async getSearchData(districtvalue,subdistrictvalue) {
-        try {
-            console.log(districtvalue);
-          // Make a request to fetch the document by email
-          const response = await this.databases.listDocuments(
-            conf.subletshebaDatabaseId,
-            conf.subletshebaCollectionId,
-            [
-                Query.equal('district', districtvalue),
-                Query.equal('subdistrict', subdistrictvalue)
-            ]
-          );
-          // Handle the response
-          console.log('Fetched Document:', response);
-          
-         return response.documents; // Return the first matching document
-        } catch (error) {
-          console.error('Error fetching document:', error);
-          throw error; // Handle or rethrow the error as needed
-        }
-    }
+  
 
     async getrescueteams() {
         try {
@@ -289,50 +269,8 @@ export class Service {
         }
     }
 
-    async createPost({ title, details }) {
-        try {
-            return await this.databases.createDocument(
-                conf.subletshebaDatabaseId,
-                conf.subletshebaCollectionId,
-                ID.unique(), {
-                    title,
-                    details
-                }
-            );
-        } catch (error) {
-            throw error;
-        }
-    }
+   
 
-    async updatePost({ title, details }) {
-        try {
-            return await this.databases.updateDocument(
-                conf.subletshebaDatabaseId,
-                conf.subletshebaCollectionId,
-                ID.unique(), {
-                    title,
-                    details
-                }
-            );
-        } catch (error) {
-            throw error;
-        }
-    }
-
-    async deletePost(documentid) {
-        try {
-            console.log(documentid);
-            await this.databases.deleteDocument(
-                conf.subletshebaDatabaseId,
-                conf.subletshebaCollectionId,
-                documentid
-            );
-            return true;
-        } catch (error) {
-            throw error;
-            return false;
-        }
-    }
 }
 
 const service = new Service();
