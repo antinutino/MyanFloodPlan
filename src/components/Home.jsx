@@ -2,7 +2,7 @@
 import Spline from '@splinetool/react-spline'; 
 import Sidebar from './Sidebar';
 import Body from './Body';
-import Footer from './footer';
+import Footer from './Footer';
 
 function Home() {
 
