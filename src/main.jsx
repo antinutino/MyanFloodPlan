@@ -10,7 +10,6 @@ import App from "./App";
 import HomePage from "./pages/HomePage";
 import Home from "./components/Home";
 import Signup from "./pages/Signup";
-import Map from "./components/map";
 import Floodpred from "./components/Floodpred";
 import Weatherpred from "./components/Weatherpred";
 import Authprovider from "./components/Authprovider";
@@ -23,6 +22,7 @@ import HelpPosts from "./pages/HelpPosts";
 import MyTeams from "./pages/MyTeams";
 import TagedPosts from "./components/TagedPosts";
 import Inbox from "./components/Inbox";
+import Map from "./components/Map";
 
 
 const router = createBrowserRouter([
