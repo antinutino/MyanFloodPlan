@@ -42,9 +42,9 @@ function Signup() {
   }
 
   return (
-    <div className="h-screen flex justify-center items-center bg-white">
+    <div className="h-screen text-center flex justify-center items-center bg-white">
       <form onSubmit={handleSubmit} className="bg-white w-full max-w-md p-6 rounded-lg shadow-md">
-        <h1 className="text-gray-800 font-bold text-2xl mb-1">Create Your Account</h1>
+        <h1 className="text-blue-900 font-bold text-2xl mb-1">Create Your Account</h1>
         <p className="text-sm font-normal text-gray-600 mb-7">Join us to start your journey!</p>
 
         {/* Name Input */}

@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import service from '../appwrite/data_config'; // Ensure your data service is imported
+import React, { useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import service from '../appwrite/data_config';
+import { AuthContext } from '../components/Authprovider'; // Import the AuthContext to access user
 
 function HelpPosts() {
     const [helpPosts, setHelpPosts] = useState([]);
@@ -9,19 +11,28 @@ function HelpPosts() {
     const [postToTag, setPostToTag] = useState(null);
     const [taggedPosts, setTaggedPosts] = useState([]); // Track which posts have been tagged
 
-    useEffect(() => {
-        const fetchHelpPosts = async () => {
-            try {
-                const posts = await service.getHelpPosts(); // Fetch help posts
-                setHelpPosts(posts);
-            } catch (error) {
-                console.error('Error fetching help posts:', error);
-                setError('Failed to fetch help posts.');
-            }
-        };
+    const { user } = useContext(AuthContext); // Access the user from the AuthContext
+    const navigate = useNavigate(); // Initialize useNavigate for redirection
 
-        fetchHelpPosts();
-    }, []);
+    useEffect(() => {
+        if (!user) {
+            // If no user, navigate to login page
+            navigate('/login');
+        } else {
+            // Fetch help posts if the user is authenticated
+            const fetchHelpPosts = async () => {
+                try {
+                    const posts = await service.getHelpPosts();
+                    setHelpPosts(posts);
+                } catch (error) {
+                    console.error('Error fetching help posts:', error);
+                    setError('Failed to fetch help posts.');
+                }
+            };
+
+            fetchHelpPosts();
+        }
+    }, [user, navigate]); // Depend on user and navigate to trigger effect properly
 
     const fetchRescueTeams = async (location) => {
         try {

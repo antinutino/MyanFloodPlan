@@ -102,7 +102,7 @@ function Body() {
   </div>
 
   {/* Right Section with Get Started Button */}
-  <div className="flex flex-col items-center lg:items-start mx-auto w-full sm:w-1/3 p-2">
+  <div className="flex flex-col items-center lg:items-start  w-full lg:w-1/3  p-2">
     <h2 className="text-2xl font-semibold mb-6 text-center border-b-2">Get Started</h2>
     <p className="text-3xl text-gray-600 mb-4">
           Myan Flood Plan is a crucial lifeline for communities in Myanmar at risk of flooding. Our innovative platform

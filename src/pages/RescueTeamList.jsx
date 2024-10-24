@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useContext } from 'react';
 import { Autocomplete, useJsApiLoader } from '@react-google-maps/api'; // Importing Autocomplete from react-google-maps
 import { FaSearch } from 'react-icons/fa'; // Search icon
+import { useNavigate } from 'react-router-dom'; // React Router's useNavigate
 import service from '../appwrite/data_config';
 import conf from '../conf/conf';
 import { AuthContext } from '../components/Authprovider';
@@ -14,7 +15,8 @@ function RescueTeamList() {
     const [areaOfRescue, setAreaOfRescue] = useState('');
     const [joinedTeams, setJoinedTeams] = useState([]); // Track joined teams
     const autocompleteRef = useRef(null);
-    const { user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext); // AuthContext provides the user object
+    const navigate = useNavigate(); // useNavigate hook from react-router-dom
     const libraries = ['places'];
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: `${conf.goMapsApiKey}`, // Replace with your Google Maps API key
@@ -22,6 +24,12 @@ function RescueTeamList() {
     });
 
     useEffect(() => {
+        if (!user) {
+            // If the user is not available, redirect to the login page
+            navigate('/login');
+            return;
+        }
+
         async function fetchRescueTeams() {
             try {
                 const data = await service.getrescueteams();
@@ -34,7 +42,7 @@ function RescueTeamList() {
         }
 
         fetchRescueTeams();
-    }, []);
+    }, [user, navigate]);
 
     const handleSearch = async () => {
         try {
