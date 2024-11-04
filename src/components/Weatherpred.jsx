@@ -89,7 +89,7 @@ const Weatherpred = ({ onRainData }) => { // Adding onRainData prop
   };
 
   return (
-    <div className='w-3/4 mx-auto'>
+    <div className='w-full lg:w-3/4 '>
       <h1 className='text-center'>Weather Data Graph</h1>
       <ResponsiveContainer width="100%" height={400}>
         <ComposedChart data={weatherData}>

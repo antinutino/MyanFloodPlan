@@ -165,14 +165,14 @@ const FloodPred = () => {
   };
 
   return (
-    <div className='w-3/4 mx-auto h-screen'>
+    <div className='w-full lg:w-3/4 h-screen'>
       <h1 className="text-center">River Discharge Data Graph</h1>
       <div className="text-center mb-4">
         <p><strong>Location:</strong> {location_name}</p>
         <p><strong>Timezone:</strong> {timezone} ({timezoneAbbreviation})</p>
       </div>
 
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer className="w-full" height={400}>
         <LineChart data={riverData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis 
@@ -181,7 +181,7 @@ const FloodPred = () => {
             tickFormatter={formatDate}
           />
           <YAxis label={{ value: 'Discharge (m³/s)', angle: -90, position: 'insideLeft' }} />
-          <Tooltip formatter={(value, name) => [value, name]} />
+          <Tooltip className="w-1/2" formatter={(value, name) => [value, name]} />
           <Legend />
           <Line type="monotone" dataKey="riverDischarge" stroke="#ff6384" name="River Discharge (m³/s)" />
           <Line type="monotone" dataKey="riverDischargeMax" stroke="#36a2eb" name="Max Discharge (m³/s)" />
@@ -198,9 +198,9 @@ const FloodPred = () => {
         <p><strong>River Discharge:</strong> {riverData[1] ? riverData[1].riverDischarge : 'N/A'} m³/s</p>
       </div>
 
-      <div className="mb-8">
-        <h2 className="text-center text-red-600 font-bold">Flood Prediction</h2>
-        <p className="text-center">{floodPrediction}</p>
+      <div className="mb-8 p-6 bg-green-700 rounded-xl">
+        <h2 className="text-center text-xl  text-red-600 font-bold">Flood Prediction</h2>
+        <p className="text-center text-lg font-bold ">{floodPrediction}</p>
       </div>
     </div>
   );
